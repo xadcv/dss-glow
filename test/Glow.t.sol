@@ -24,6 +24,7 @@ contract GlowTest is Test {
     function setUp() public {
         goerliFork = vm.createFork(GOERLI_RPC_URL);
         glow = new Glow(changelog.getAddress("CHANGELOG"));
+
         rtf.gulp(changelog.getAddress("GUSD"), testers);
     }
 
