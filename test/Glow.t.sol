@@ -5,10 +5,10 @@ import "forge-std/Test.sol";
 import "../src/Glow.sol";
 
 contract CounterTest is Test {
-    Counter public counter;
+    Glow public counter;
 
     function setUp() public {
-        counter = new Counter();
+        counter = new Glow();
         counter.setNumber(0);
     }
 
