@@ -796,8 +796,8 @@
       }
     },
     "test/Glow.t.sol": {
-      "lastModificationDate": 1667594534971,
-      "contentHash": "f9cdd616def416b344ac52ca4a4045d9",
+      "lastModificationDate": 1667595236436,
+      "contentHash": "76427e8e2ad2a9830311e7be2ce4d570",
       "sourceName": "test/Glow.t.sol",
       "solcConfig": {
         "settings": {
