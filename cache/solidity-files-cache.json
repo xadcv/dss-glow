@@ -787,8 +787,8 @@
       }
     },
     "test/Glow.t.sol": {
-      "lastModificationDate": 1667571956845,
-      "contentHash": "0859a987178c94d22191cc962172af57",
+      "lastModificationDate": 1667574772817,
+      "contentHash": "ce72cc55067d9dadb05fc28df93e8f33",
       "sourceName": "test/Glow.t.sol",
       "solcConfig": {
         "settings": {
@@ -837,6 +837,9 @@
       ],
       "versionRequirement": "^0.8.13",
       "artifacts": {
+        "ChainLogLike": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/ChainLogLike.json"
+        },
         "CounterTest": {
           "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/CounterTest.json"
         }
