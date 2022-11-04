@@ -3,46 +3,15 @@
     {
       "inputs": [
         {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getAddress",
+      "outputs": [
+        {
           "internalType": "address",
-          "name": "chainlog_",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [],
-      "name": "changelog",
-      "outputs": [
-        {
-          "internalType": "contract ChainLogLike",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "dai",
-      "outputs": [
-        {
-          "internalType": "contract Dai",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "gusd",
-      "outputs": [
-        {
-          "internalType": "contract Gusd",
           "name": "",
           "type": "address"
         }
@@ -52,41 +21,19 @@
     }
   ],
   "bytecode": {
-    "object": "0x60e060405234801561001057600080fd5b506040516102bd3803806102bd83398101604081905261002f9161015c565b6001600160a01b03811660808190526040516321f8a72160e01b81526311d554d160e21b60048201526321f8a72190602401602060405180830381865afa15801561007e573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906100a2919061015c565b600080546001600160a01b0319166001600160a01b039283161790556080516040516321f8a72160e01b8152664d43445f44414960c81b60048201529116906321f8a72190602401602060405180830381865afa158015610107573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061012b919061015c565b600180546001600160a01b0319166001600160a01b0392831690811790915560005490911660a05260c0525061018c565b60006020828403121561016e57600080fd5b81516001600160a01b038116811461018557600080fd5b9392505050565b60805160a05160c0516101056101b8600039600060ad01526000608701526000604501526101056000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80637438e9151460415780638c87ee90146083578063f4b9fa751460a9575b600080fd5b60677f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200160405180910390f35b60677f000000000000000000000000000000000000000000000000000000000000000081565b60677f00000000000000000000000000000000000000000000000000000000000000008156fea26469706673582212205bc20e1fbdb403c56981590fb149332d8628365c649ccc934198ef19f3c7330e64736f6c63430008110033",
-    "sourceMap": "719:434:14:-:0;;;897:254;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;938:35:14;;;;;;997:28;;-1:-1:-1;;;997:28:14;;-1:-1:-1;;;997:28:14;;;518:25:16;997:20:14;;491:18:16;;997:28:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;983:11;:42;;-1:-1:-1;;;;;;983:42:14;-1:-1:-1;;;;;983:42:14;;;;;;1048:9;;:31;;-1:-1:-1;;;1048:31:14;;-1:-1:-1;;;1048:31:14;;;763:28:16;1048:20:14;;;;;736:18:16;;1048:31:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1035:10;:44;;-1:-1:-1;;;;;;1035:44:14;-1:-1:-1;;;;;1035:44:14;;;;;;;;;-1:-1:-1;1101:11:14;;;;1089:24;;1123:21;;-1:-1:-1;719:434:14;;14:290:16;84:6;137:2;125:9;116:7;112:23;108:32;105:52;;;153:1;150;143:12;105:52;179:16;;-1:-1:-1;;;;;224:31:16;;214:42;;204:70;;270:1;267;260:12;204:70;293:5;14:290;-1:-1:-1;;;14:290:16:o;554:243::-;719:434:14;;;;;;;;;;;;;;;;;;;;;;;;",
+    "object": "0x",
+    "sourceMap": "",
     "linkReferences": {}
   },
   "deployedBytecode": {
-    "object": "0x6080604052348015600f57600080fd5b5060043610603c5760003560e01c80637438e9151460415780638c87ee90146083578063f4b9fa751460a9575b600080fd5b60677f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200160405180910390f35b60677f000000000000000000000000000000000000000000000000000000000000000081565b60677f00000000000000000000000000000000000000000000000000000000000000008156fea26469706673582212205bc20e1fbdb403c56981590fb149332d8628365c649ccc934198ef19f3c7330e64736f6c63430008110033",
-    "sourceMap": "719:434:14:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;739:39;;;;;;;;-1:-1:-1;;;;;200:32:16;;;182:51;;170:2;155:18;739:39:14;;;;;;;784:26;;;;;816:24;;;;",
-    "linkReferences": {},
-    "immutableReferences": {
-      "24480": [
-        {
-          "start": 69,
-          "length": 32
-        }
-      ],
-      "24483": [
-        {
-          "start": 135,
-          "length": 32
-        }
-      ],
-      "24486": [
-        {
-          "start": 173,
-          "length": 32
-        }
-      ]
-    }
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
   },
   "methodIdentifiers": {
-    "changelog()": "7438e915",
-    "dai()": "f4b9fa75",
-    "gusd()": "8c87ee90"
+    "getAddress(bytes32)": "21f8a721"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"chainlog_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"changelog\",\"outputs\":[{\"internalType\":\"contract ChainLogLike\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"dai\",\"outputs\":[{\"internalType\":\"contract Dai\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gusd\",\"outputs\":[{\"internalType\":\"contract Gusd\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/Glow.sol\":\"Glow\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/Glow.sol\":{\"keccak256\":\"0xe40f29901c9390f0d87c050344bda7d24dc9ff0d59275d856cb455fe53a9b48e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d7f9093408aa80371d8f689aa3e14459bd321dd9268e975247c265a1bcdae59\",\"dweb:/ipfs/QmQ4B2Ka6MjoMn4rXnb5M92u8zEbQrxMZtyu88hBPpNA8Q\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"getAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/Glow.sol\":\"ChainLogLike\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/Glow.sol\":{\"keccak256\":\"0xe40f29901c9390f0d87c050344bda7d24dc9ff0d59275d856cb455fe53a9b48e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d7f9093408aa80371d8f689aa3e14459bd321dd9268e975247c265a1bcdae59\",\"dweb:/ipfs/QmQ4B2Ka6MjoMn4rXnb5M92u8zEbQrxMZtyu88hBPpNA8Q\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.8.17+commit.8df45f5f"
@@ -97,48 +44,17 @@
         {
           "inputs": [
             {
-              "internalType": "address",
-              "name": "chainlog_",
-              "type": "address"
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
             }
           ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "inputs": [],
           "stateMutability": "view",
           "type": "function",
-          "name": "changelog",
+          "name": "getAddress",
           "outputs": [
             {
-              "internalType": "contract ChainLogLike",
-              "name": "",
-              "type": "address"
-            }
-          ]
-        },
-        {
-          "inputs": [],
-          "stateMutability": "view",
-          "type": "function",
-          "name": "dai",
-          "outputs": [
-            {
-              "internalType": "contract Dai",
-              "name": "",
-              "type": "address"
-            }
-          ]
-        },
-        {
-          "inputs": [],
-          "stateMutability": "view",
-          "type": "function",
-          "name": "gusd",
-          "outputs": [
-            {
-              "internalType": "contract Gusd",
+              "internalType": "address",
               "name": "",
               "type": "address"
             }
@@ -169,7 +85,7 @@
         "bytecodeHash": "ipfs"
       },
       "compilationTarget": {
-        "src/Glow.sol": "Glow"
+        "src/Glow.sol": "ChainLogLike"
       },
       "libraries": {}
     },

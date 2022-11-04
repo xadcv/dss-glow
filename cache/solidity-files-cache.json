@@ -747,8 +747,8 @@
       }
     },
     "src/Glow.sol": {
-      "lastModificationDate": 1667571608103,
-      "contentHash": "bea1deee4324aa446acb54a562a3c1ba",
+      "lastModificationDate": 1667593985702,
+      "contentHash": "8ec1340aee4066d2a37f6a693be76a88",
       "sourceName": "src/Glow.sol",
       "solcConfig": {
         "settings": {
@@ -781,14 +781,23 @@
       "imports": [],
       "versionRequirement": "^0.8.13",
       "artifacts": {
+        "ChainLogLike": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.sol/ChainLogLike.json"
+        },
+        "Dai": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.sol/Dai.json"
+        },
         "Glow": {
           "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.sol/Glow.json"
+        },
+        "Gusd": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.sol/Gusd.json"
         }
       }
     },
     "test/Glow.t.sol": {
-      "lastModificationDate": 1667574772817,
-      "contentHash": "ce72cc55067d9dadb05fc28df93e8f33",
+      "lastModificationDate": 1667594534971,
+      "contentHash": "f9cdd616def416b344ac52ca4a4045d9",
       "sourceName": "test/Glow.t.sol",
       "solcConfig": {
         "settings": {
@@ -837,11 +846,11 @@
       ],
       "versionRequirement": "^0.8.13",
       "artifacts": {
-        "ChainLogLike": {
-          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/ChainLogLike.json"
+        "GlowTest": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/GlowTest.json"
         },
-        "CounterTest": {
-          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/CounterTest.json"
+        "RestrictedTokenFaucet": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/RestrictedTokenFaucet.json"
         }
       }
     }
