@@ -53,16 +53,16 @@ contract GlowTest is Test {
         gusd.approve(address(this), 2**256 - 1); // Glow asking for approval to spend GUSD from msg.sender
 
         vm.prank(address(1));
-        gusd.transfer(address(glow), 50_000_00);
+        gusd.transfer(address(glow), 50_000 * dec02);
 
-        assertEq(gusd.balanceOf(address(glow)), 50_000_00);
+        assertEq(gusd.balanceOf(address(glow)), 50_000 * dec02);
     }
 
     //Without Approval of Glow contract as the GUSD spender
     function testGusdTransferToGlowWithoutApproval() public {
         vm.expectRevert("ds-token-insufficient-approval");
 
-        gusd.transferFrom(address(1), address(glow), 50_000_00);
+        gusd.transferFrom(address(1), address(glow), 50_000 * dec02);
     }
 
     function testGUSDJoinApproval() public {
@@ -76,47 +76,53 @@ contract GlowTest is Test {
         );
     }
 
-
     function testSellGemWorks() public {
+        int256 surplusBefore = int256(vat.dai(vow)) - int256(vat.sin(vow));
         vm.prank(address(1));
-        gusd.approve(address(glow), 5_00);
+        gusd.approve(address(glow), 5 * dec02);
 
         vm.prank(address(1));
-        glow.glow(5_00);
+        glow.glow(5 * dec02);
 
-        assertEq(dai.balanceOf(address(glow)), 5_000_000_000_000_000_000);
+        int256 surplusAfter = int256(vat.dai(vow)) - int256(vat.sin(vow));
+
+        assertEq(surplusBefore + int256(5 * dec45), surplusAfter);
     }
 
     function testBalanceSweep() public {
+        int256 surplusBefore = int256(vat.dai(vow)) - int256(vat.sin(vow));
         vm.prank(address(2));
-        gusd.transfer(address(glow), 5_00);
+        gusd.transfer(address(glow), 5 * dec02);
 
         vm.prank(address(1));
-        gusd.transfer(address(glow), 10_00);
+        gusd.transfer(address(glow), 10 * dec02);
 
         vm.prank(address(3));
         glow.glow();
 
-        assertEq(dai.balanceOf(address(glow)), 15_000_000_000_000_000_000);
+        int256 surplusAfter = int256(vat.dai(vow)) - int256(vat.sin(vow));
+
+        assertEq(surplusBefore + int256(15 * dec45), surplusAfter);
     }
-    
 
     function testBalanceSweepMultiple() public {
+        int256 surplusBefore = int256(vat.dai(vow)) - int256(vat.sin(vow));
         vm.prank(address(2));
-        gusd.transfer(address(glow), 5_00);
+        gusd.transfer(address(glow), 5 * dec02);
 
         vm.prank(address(3));
         glow.glow();
 
         vm.prank(address(1));
-        gusd.transfer(address(glow), 10_00);
+        gusd.transfer(address(glow), 10 * dec02);
 
         vm.prank(address(4));
         glow.glow();
 
-        assertEq(dai.balanceOf(address(glow)), 15_000_000_000_000_000_000);
-    }
+        int256 surplusAfter = int256(vat.dai(vow)) - int256(vat.sin(vow));
 
+        assertEq(surplusBefore + int256(15 * dec45), surplusAfter);
+    }
 
     function testSurplusBeforeAfter() public {
         int256 surplusBefore = int256(vat.dai(vow)) - int256(vat.sin(vow));
