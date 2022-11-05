@@ -747,8 +747,8 @@
       }
     },
     "src/Glow.sol": {
-      "lastModificationDate": 1667652763482,
-      "contentHash": "bbe4ae0524e869d9afaf0346518d3d37",
+      "lastModificationDate": 1667657565383,
+      "contentHash": "7687ad1dcda922a60378feb40444861e",
       "sourceName": "src/Glow.sol",
       "solcConfig": {
         "settings": {
@@ -802,8 +802,8 @@
       }
     },
     "test/Glow.t.sol": {
-      "lastModificationDate": 1667652563385,
-      "contentHash": "61875e189b64f5730ca14bfc0472dbc5",
+      "lastModificationDate": 1667658017327,
+      "contentHash": "4b2d809342540d903cd4df0478e410e5",
       "sourceName": "test/Glow.t.sol",
       "solcConfig": {
         "settings": {
@@ -857,6 +857,9 @@
         },
         "RestrictedTokenFaucet": {
           "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/RestrictedTokenFaucet.json"
+        },
+        "Vat": {
+          "0.8.17+commit.8df45f5f.Darwin.appleclang": "Glow.t.sol/Vat.json"
         }
       }
     }
