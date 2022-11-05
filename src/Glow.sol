@@ -13,6 +13,10 @@ interface Gusd {
         address _to,
         uint256 _value
     ) external returns (bool);
+
+    function allowance(address _owner, address _spender)
+        external
+        returns (uint256);
 }
 
 interface Dai {
@@ -25,6 +29,14 @@ interface Dai {
         address dst,
         uint256 wad
     ) external returns (bool);
+}
+
+interface DssPsm {
+    function sellGem(address usr, uint256 gemAmt) external;
+}
+
+interface DaiJoin {
+    function join(address usr, uint256 wad) external;
 }
 
 interface ChainLogLike {
@@ -46,4 +58,6 @@ contract Glow {
         gusd = Gusd(gusdAddress);
         dai = Dai(daiAddress);
     }
+
+    function DssGlow(address usr, uint256 amt) public {}
 }
