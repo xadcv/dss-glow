@@ -61,8 +61,11 @@ contract Glow {
     address daiJoinAddress;
     address vow;
 
+    uint256 public running;
+
     // --- Events ---
     event Glowed(uint256 amt);
+    event RunningTotal(uint256 amt);
 
     constructor(address chainlog_) {
         changelog = ChainLogLike(chainlog_);
@@ -90,8 +93,10 @@ contract Glow {
         gusdPsm.sellGem(address(this), amt_);
 
         uint256 dbalance = dai.balanceOf(address(this));
+        running += dbalance;
         daiJoin.join(vow, dbalance);
         emit Glowed(dbalance);
+        emit RunningTotal(running);
     }
 
     /// @dev Sweeps the balance of GUSD on the contract
@@ -100,7 +105,9 @@ contract Glow {
         gusdPsm.sellGem(address(this), gbalance);
 
         uint256 dbalance = dai.balanceOf(address(this));
+        running += dbalance;
         daiJoin.join(vow, dbalance);
         emit Glowed(dbalance);
+        emit RunningTotal(running);
     }
 }
