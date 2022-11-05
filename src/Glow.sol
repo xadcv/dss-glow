@@ -13,6 +13,10 @@ interface Gusd {
         address _to,
         uint256 _value
     ) external returns (bool);
+
+    function allowance(address owner_, address spender_)
+        external
+        returns (uint256);
 }
 
 interface Dai {

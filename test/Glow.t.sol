@@ -42,6 +42,13 @@ contract GlowTest is Test {
         vm.prank(address(1));
         gusd.transfer(address(this), 50_000_00);
 
-        assertEq(gusd.balanceOf(address(this)), 50_000_000);
+        assertEq(gusd.balanceOf(address(this)), 50_000_00);
+    }
+
+    function testAllowance() public {
+        Gusd gusd = Gusd(changelog.getAddress("GUSD"));
+        vm.prank(address(1));
+        gusd.approve(address(this), 5_00);
+        assertEq(gusd.allowance(address(1), address(this)), 5_00);
     }
 }
