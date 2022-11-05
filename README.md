@@ -7,7 +7,7 @@ This is the same as @lollike 's [lollike/dss-blow](https://github.com/lollike/ds
 
 ### `glow()`
 Calling the `glow()` function will automatically `sellGem` any GUSD deposited in the contract through the `DssPsm` for GUSD, followed by a `join` on the resulting Dai to the `vow`.
-Therefore in order to contribute GUSD permissionlessly to the Maker surplus buffer, you simply send Dai to the DssBlow contract, and subsequentially call `blow()`.
+Therefore in order to contribute GUSD permissionlessly to the Maker surplus buffer, you simply send GUSD to the Glow contract, and subsequentially call `glow()`.
 
 ### `glow(uint256 amt_)`
 You can also call `glow(uint256 amt_)` to send a specified amount of GUSD directly from your wallet to the Maker surplus buffer. To do this, you must first approve Glow to spend your Dai.
