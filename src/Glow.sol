@@ -14,7 +14,7 @@ interface Gusd {
         uint256 _value
     ) external returns (bool);
 
-    function allowance(address owner_, address spender_)
+    function allowance(address _owner, address _spender)
         external
         returns (uint256);
 }
@@ -29,6 +29,18 @@ interface Dai {
         address dst,
         uint256 wad
     ) external returns (bool);
+
+    function allowance(address _owner, address _spender)
+        external
+        returns (uint256);
+}
+
+interface DssPsm {
+    function sellGem(address usr, uint256 gemAmt) external;
+}
+
+interface DaiJoin {
+    function join(address usr, uint256 wad) external;
 }
 
 interface ChainLogLike {
@@ -39,15 +51,52 @@ contract Glow {
     ChainLogLike public immutable changelog;
     Gusd public immutable gusd;
     Dai public immutable dai;
+    DssPsm public immutable gusdPsm;
+    DaiJoin public immutable daiJoin;
 
     address gusdAddress;
     address daiAddress;
+    address gusdPsmAddress;
+    address gusdJoinAddress;
+    address daiJoinAddress;
+    address vow;
 
     constructor(address chainlog_) {
         changelog = ChainLogLike(chainlog_);
+
         gusdAddress = changelog.getAddress("GUSD");
         daiAddress = changelog.getAddress("MCD_DAI");
+        gusdPsmAddress = changelog.getAddress("MCD_PSM_GUSD_A");
+        gusdJoinAddress = changelog.getAddress("MCD_JOIN_PSM_GUSD_A");
+        daiJoinAddress = changelog.getAddress("MCD_JOIN_DAI");
+        vow = changelog.getAddress("MCD_VOW");
+
         gusd = Gusd(gusdAddress);
         dai = Dai(daiAddress);
+        gusdPsm = DssPsm(gusdPsmAddress);
+        daiJoin = DaiJoin(daiJoinAddress);
+
+        gusd.approve(gusdJoinAddress, 2**256 - 1);
+        dai.approve(daiJoinAddress, 2**256 - 1);
+    }
+
+    /// @dev Pulls GUSD from the wallet of the user
+    function glow(uint256 amt_) public {
+        gusd.transferFrom(msg.sender, address(this), amt_);
+
+        uint256 gbalance = gusd.balanceOf(address(this));
+        gusdPsm.sellGem(address(this), gbalance);
+
+        uint256 dbalance = dai.balanceOf(address(this));
+        daiJoin.join(vow, dbalance);
+    }
+
+    /// @dev Sweeps the balance of GUSD on the contract
+    function glow() public {
+        uint256 gbalance = gusd.balanceOf(address(this));
+        gusdPsm.sellGem(address(this), gbalance);
+
+        uint256 dbalance = dai.balanceOf(address(this));
+        daiJoin.join(vow, dbalance);
     }
 }
