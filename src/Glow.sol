@@ -64,12 +64,12 @@ contract Glow {
     constructor(address chainlog_) {
         changelog = ChainLogLike(chainlog_);
 
-        gusdAddress     = changelog.getAddress("GUSD");
-        daiAddress      = changelog.getAddress("MCD_DAI");
-        gusdPsmAddress  = changelog.getAddress("MCD_PSM_GUSD_A");
+        gusdAddress = changelog.getAddress("GUSD");
+        daiAddress = changelog.getAddress("MCD_DAI");
+        gusdPsmAddress = changelog.getAddress("MCD_PSM_GUSD_A");
         gusdJoinAddress = changelog.getAddress("MCD_JOIN_PSM_GUSD_A");
-        daiJoinAddress  = changelog.getAddress("MCD_JOIN_DAI");
-        vow             = changelog.getAddress("MCD_VOW");
+        daiJoinAddress = changelog.getAddress("MCD_JOIN_DAI");
+        vow = changelog.getAddress("MCD_VOW");
 
         gusd = Gusd(gusdAddress);
         dai = Dai(daiAddress);
@@ -78,22 +78,21 @@ contract Glow {
 
         // Step 1: MCD_JOIN_PSM_GUSD_A approval to spend GUSD from Glow
         gusd.approve(gusdJoinAddress, 2**256 - 1);
-        
+
         //dai.approve()
     }
 
     /// @dev Pulls GUSD from the wallet of the user
     function glow(uint256 amt_) public {
         // Step 0: Increase to the maximum limit the GUSD spender on Glow from the msg.sender
-        gusd.approve(address(this), 2**256 - 1); // msg.sender
+        //gusd.approve(msg.sender, 2**256 - 1); // msg.sender
 
         // Step 0: Transfer GUSD to the Glow contract
-        gusd.transfer(address(this), amt_);
+        gusd.transferFrom(msg.sender, address(this), amt_);
 
         // Step 2: Execute Sell Gem on the GUSD PSM
         //uint256 balance = gusd.balanceOf(address(this));
-        gusdPsm.sellGem(address(this), amt_);
-
+        gusdPsm.sellGem(msg.sender, amt_);
 
         // SellGem
     }

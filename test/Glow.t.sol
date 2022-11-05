@@ -80,10 +80,14 @@ contract GlowTest is Test {
 
     function testSellGemWorks() public {
         Dai dai = Dai(changelog.getAddress("MCD_DAI"));
+        Gusd gusd = Gusd(changelog.getAddress("GUSD"));
 
+        vm.prank(address(1));
+        gusd.approve(address(glow), 5_00);
+        
         vm.prank(address(1));
         glow.glow(5_00);
 
-        assertEq(dai.balanceOf(address(this)), 5_00);
+        assertEq(dai.balanceOf(address(this)), 5_000_000_000_000_000_000);
     }
 }
