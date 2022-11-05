@@ -61,6 +61,9 @@ contract Glow {
     address daiJoinAddress;
     address vow;
 
+    // --- Events ---
+    event Glowed(uint256 amt);
+
     constructor(address chainlog_) {
         changelog = ChainLogLike(chainlog_);
 
@@ -80,15 +83,15 @@ contract Glow {
         dai.approve(daiJoinAddress, 2**256 - 1);
     }
 
-    /// @dev Pulls GUSD from the wallet of the user
+    /// @dev Pulls GUSD from the wallet of the user and only sends that amount of Dai
     function glow(uint256 amt_) public {
         gusd.transferFrom(msg.sender, address(this), amt_);
 
-        uint256 gbalance = gusd.balanceOf(address(this));
-        gusdPsm.sellGem(address(this), gbalance);
+        gusdPsm.sellGem(address(this), amt_);
 
         uint256 dbalance = dai.balanceOf(address(this));
         daiJoin.join(vow, dbalance);
+        emit Glowed(dbalance);
     }
 
     /// @dev Sweeps the balance of GUSD on the contract
@@ -98,5 +101,6 @@ contract Glow {
 
         uint256 dbalance = dai.balanceOf(address(this));
         daiJoin.join(vow, dbalance);
+        emit Glowed(dbalance);
     }
 }

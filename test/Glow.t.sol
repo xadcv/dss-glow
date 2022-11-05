@@ -137,4 +137,22 @@ contract GlowTest is Test {
 
         assertEq(surplusBefore + int256(10 * dec45), surplusAfter);
     }
+
+    function testOnlySendAmt() public {
+        int256 surplusBefore = int256(vat.dai(vow)) - int256(vat.sin(vow));
+
+        vm.prank(address(2));
+        gusd.transfer(address(glow), 5 * dec02);
+
+        vm.prank(address(1));
+        gusd.approve(address(glow), 10 * dec02);
+
+        vm.prank(address(1));
+        glow.glow(10 * dec02);
+
+        int256 surplusAfter = int256(vat.dai(vow)) - int256(vat.sin(vow));
+
+        assertEq(surplusBefore + int256(10 * dec45), surplusAfter);
+    }
+
 }
