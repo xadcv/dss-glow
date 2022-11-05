@@ -1,0 +1,62 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files. 
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.gitmodules
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+out/Common.sol/CommonBase.json
+out/Components.sol/Components.json
+out/Counter.s.sol/CounterScript.json
+out/Glow.sol/ChainLogLike.json
+out/Glow.sol/Dai.json
+out/Glow.sol/DaiJoin.json
+out/Glow.sol/DssPsm.json
+out/Glow.sol/Glow.json
+out/Glow.sol/Gusd.json
+out/Glow.sol/Vat.json
+out/Glow.t.sol/ChainLogLike.json
+out/Glow.t.sol/CounterTest.json
+out/Glow.t.sol/GlowTest.json
+out/Glow.t.sol/RestrictedTokenFaucet.json
+out/Glow.t.sol/Vat.json
+out/GlowTest.t.sol/GlowTest.json
+out/GlowTest.t.sol/RestrictedTokenFaucet.json
+out/Script.sol/Script.json
+out/Script.sol/ScriptBase.json
+out/StdAssertions.sol/StdAssertions.json
+out/StdCheats.sol/StdCheats.json
+out/StdCheats.sol/StdCheatsSafe.json
+out/StdError.sol/stdError.json
+out/StdJson.sol/stdJson.json
+out/StdMath.sol/stdMath.json
+out/StdStorage.sol/stdStorage.json
+out/StdStorage.sol/stdStorageSafe.json
+out/StdUtils.sol/StdUtils.json
+out/Vm.sol/Vm.json
+out/Vm.sol/VmSafe.json
+out/console.sol/console.json
+out/console2.sol/console2.json
+out/test.sol/DSTest.json
+out/test.sol/Test.json
+out/test.sol/TestBase.json
+cache/solidity-files-cache.json
