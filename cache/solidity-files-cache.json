@@ -747,8 +747,8 @@
       }
     },
     "src/Glow.sol": {
-      "lastModificationDate": 1667593985702,
-      "contentHash": "8ec1340aee4066d2a37f6a693be76a88",
+      "lastModificationDate": 1667635283744,
+      "contentHash": "7d9381f9598d627f5f10955886ef9ca0",
       "sourceName": "src/Glow.sol",
       "solcConfig": {
         "settings": {
@@ -796,8 +796,8 @@
       }
     },
     "test/Glow.t.sol": {
-      "lastModificationDate": 1667595236436,
-      "contentHash": "76427e8e2ad2a9830311e7be2ce4d570",
+      "lastModificationDate": 1667635227604,
+      "contentHash": "64d6a80306e3c9407b4b31ce7104dbd5",
       "sourceName": "test/Glow.t.sol",
       "solcConfig": {
         "settings": {
