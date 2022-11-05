@@ -76,24 +76,27 @@ contract Glow {
         gusdPsm = DssPsm(gusdPsmAddress);
         daiJoin = DaiJoin(daiJoinAddress);
 
-        // Step 1: MCD_JOIN_PSM_GUSD_A approval to spend GUSD from Glow
         gusd.approve(gusdJoinAddress, 2**256 - 1);
-
-        //dai.approve()
+        dai.approve(daiJoinAddress, 2**256 - 1);
     }
 
     /// @dev Pulls GUSD from the wallet of the user
     function glow(uint256 amt_) public {
-        // Step 0: Increase to the maximum limit the GUSD spender on Glow from the msg.sender
-        //gusd.approve(msg.sender, 2**256 - 1); // msg.sender
-
-        // Step 0: Transfer GUSD to the Glow contract
         gusd.transferFrom(msg.sender, address(this), amt_);
 
-        // Step 2: Execute Sell Gem on the GUSD PSM
-        //uint256 balance = gusd.balanceOf(address(this));
-        gusdPsm.sellGem(msg.sender, amt_);
+        uint256 gbalance = gusd.balanceOf(address(this));
+        gusdPsm.sellGem(address(this), gbalance);
 
-        // SellGem
+        uint256 dbalance = dai.balanceOf(address(this));
+        daiJoin.join(vow, dbalance);
+    }
+
+    /// @dev Sweeps the balance of GUSD on the contract
+    function glow() public {
+        uint256 gbalance = gusd.balanceOf(address(this));
+        gusdPsm.sellGem(address(this), gbalance);
+
+        uint256 dbalance = dai.balanceOf(address(this));
+        daiJoin.join(vow, dbalance);
     }
 }
