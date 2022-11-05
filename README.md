@@ -15,6 +15,6 @@ You can also call `glow(uint256 amt_)` to send a specified amount of GUSD direct
 ## Deployment
 
 - [Mainnet]()
-- [Goerli](https://goerli.etherscan.io/address/0x5db4d1be83ee0dac45e0cc2e5565a19d9c428daf#code)
+- [Goerli](https://goerli.etherscan.io/address/0x52228370b2cb60cb38a324a97a1e987c1aab7c75#code)
 
 Contract to send GUSD from the outside to MakerDAO's surplus buffer in a permissionless way.
