@@ -1,12 +1,16 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "forge-std/Test.sol";
+import "../lib/forge-std/src/Test.sol";
 import "../src/Glow.sol";
 
 interface RestrictedTokenFaucet {
     function gulp(address gem, address[] calldata addrs) external;
 }
+
+/*interface Vat {
+    function join(address usr, uint256 wad) external;
+}*/
 
 contract GlowTest is Test {
     ChainLogLike constant changelog =
@@ -34,6 +38,7 @@ contract GlowTest is Test {
         assertEq(gusd.balanceOf(address(1)), 50_000_00);
     }
 
+    //Approve Glow contract as the GUSD spender
     function testGusdTransferToGlow() public {
         Gusd gusd = Gusd(changelog.getAddress("GUSD"));
         vm.prank(address(1));
@@ -42,6 +47,33 @@ contract GlowTest is Test {
         vm.prank(address(1));
         gusd.transfer(address(this), 50_000_00);
 
-        assertEq(gusd.balanceOf(address(this)), 50_000_000);
+        assertEq(gusd.balanceOf(address(this)), 50_000_00);
+    }
+
+    //Without Approval of Glow contract as the GUSD spender
+    function testGusdTransferToGlowWithoutApproval() public {
+        Gusd gusd = Gusd(changelog.getAddress("GUSD"));
+        vm.expectRevert("ds-token-insufficient-approval");
+        gusd.transferFrom(address(1), address(this), 50_000_00);
+    }
+
+    function testGUSDwithMcdJoinPSM() public {
+        Gusd gusd = Gusd(changelog.getAddress("GUSD"));
+        gusd.approve(changelog.getAddress("MCD_JOIN_PSM_GUSD_A"), 50_000_00);
+        assertEq(
+            gusd.allowance(
+                address(this),
+                changelog.getAddress("MCD_JOIN_PSM_GUSD_A")
+            ),
+            50_000_00
+        );
+    }
+
+    //Testing with Less Approval amt and checking the allowance
+    function testGUSDwithMcdJoinPSMWithAmtLess() public {
+        Gusd gusd = Gusd(changelog.getAddress("GUSD"));
+        gusd.approve(changelog.getAddress("MCD_JOIN_PSM_GUSD_A"), 40_000_00);
+        vm.expectRevert("ds-token-insufficient-approval");
+        gusd.transferFrom(address(1), address(this), 50_000_00);
     }
 }
