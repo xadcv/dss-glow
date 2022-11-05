@@ -41,8 +41,8 @@ contract GlowTest is Test {
     //Approve Glow contract as the GUSD spender
     function testGusdTransferToGlow() public {
         Gusd gusd = Gusd(changelog.getAddress("GUSD"));
-        vm.prank(address(1));
-        gusd.approve(address(this), 2**256 - 1);
+        vm.prank(address(1)); // msg.sender
+        gusd.approve(address(this), 2**256 - 1); // Glow asking for approval to spend GUSD from msg.sender
 
         vm.prank(address(1));
         gusd.transfer(address(this), 50_000_00);
@@ -60,6 +60,7 @@ contract GlowTest is Test {
     function testGUSDwithMcdJoinPSM() public {
         Gusd gusd = Gusd(changelog.getAddress("GUSD"));
         gusd.approve(changelog.getAddress("MCD_JOIN_PSM_GUSD_A"), 50_000_00);
+        // Approves JOIN to spend GUSD from this
         assertEq(
             gusd.allowance(
                 address(this),
@@ -75,5 +76,14 @@ contract GlowTest is Test {
         gusd.approve(changelog.getAddress("MCD_JOIN_PSM_GUSD_A"), 40_000_00);
         vm.expectRevert("ds-token-insufficient-approval");
         gusd.transferFrom(address(1), address(this), 50_000_00);
+    }
+
+    function testSellGemWorks() public {
+        Dai dai = Dai(changelog.getAddress("MCD_DAI"));
+
+        vm.prank(address(1));
+        glow.glow(5_00);
+
+        assertEq(dai.balanceOf(address(this)), 5_00);
     }
 }
