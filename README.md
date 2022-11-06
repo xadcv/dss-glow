@@ -12,9 +12,12 @@ Therefore in order to contribute GUSD permissionlessly to the Maker surplus buff
 ### `glow(uint256 amt_)`
 You can also call `glow(uint256 amt_)` to send a specified amount of GUSD directly from your wallet to the Maker surplus buffer. To do this, you must first approve Glow to spend your GUSD.
 
+### `quit()`
+Calling `quit()` will sweep any GUSD balance to the Maker Pause Proxy, just in case.
+
 ## Deployment
 
 - [Mainnet]()
-- [Goerli](https://goerli.etherscan.io/address/0x52228370b2cb60cb38a324a97a1e987c1aab7c75#code)
+- [Goerli]()
 
 Contract to send GUSD from the outside to MakerDAO's surplus buffer in a permissionless way.
