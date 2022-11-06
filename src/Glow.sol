@@ -66,6 +66,7 @@ contract Glow {
     // --- Events ---
     event Glowed(uint256 amt);
     event RunningTotal(uint256 amt);
+    event Quit(uint256 amt);
 
     constructor(address chainlog_) {
         changelog = ChainLogLike(chainlog_);
@@ -109,5 +110,11 @@ contract Glow {
         daiJoin.join(vow, dbalance);
         emit Glowed(dbalance);
         emit RunningTotal(running);
+    }
+
+    function quit() public {
+        uint256 gbalance = gusd.balanceOf(address(this));
+        gusd.transfer(changelog.getAddress("MCD_PAUSE_PROXY"), gbalance);
+        emit Quit(gbalance);
     }
 }

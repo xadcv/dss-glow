@@ -155,4 +155,19 @@ contract GlowTest is Test {
         assertEq(surplusBefore + int256(10 * dec45), surplusAfter);
     }
 
+    function testQuit() public {
+        uint256 balanceBefore = gusd.balanceOf(
+            changelog.getAddress("MCD_PAUSE_PROXY")
+        );
+
+        vm.prank(address(1));
+        gusd.transfer(address(glow), 11 * dec02);
+        glow.quit();
+
+        uint256 balanceAfter = gusd.balanceOf(
+            changelog.getAddress("MCD_PAUSE_PROXY")
+        );
+
+        assertEq(balanceBefore + 11 * dec02, balanceAfter);
+    }
 }
