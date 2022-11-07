@@ -90,9 +90,10 @@ contract Glow {
     /// @dev Pulls GUSD from the wallet of the user and only sends that amount of Dai
     function glow(uint256 amt_) public {
         gusd.transferFrom(msg.sender, address(this), amt_);
-
-        gusdPsm.sellGem(address(this), amt_);
-
+        uint256 gbalance = gusd.balanceOf(address(this));
+        if (gbalance != 0) {
+            gusdPsm.sellGem(address(this), amt_);
+        }
         uint256 dbalance = dai.balanceOf(address(this));
         running += dbalance;
         daiJoin.join(vow, dbalance);
@@ -103,8 +104,9 @@ contract Glow {
     /// @dev Sweeps the balance of GUSD on the contract
     function glow() public {
         uint256 gbalance = gusd.balanceOf(address(this));
-        gusdPsm.sellGem(address(this), gbalance);
-
+        if (gbalance != 0) {
+            gusdPsm.sellGem(address(this), gbalance);
+        }
         uint256 dbalance = dai.balanceOf(address(this));
         running += dbalance;
         daiJoin.join(vow, dbalance);

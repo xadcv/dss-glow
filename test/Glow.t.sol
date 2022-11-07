@@ -170,4 +170,20 @@ contract GlowTest is Test {
 
         assertEq(balanceBefore + 11 * dec02, balanceAfter);
     }
+
+    function testAvoidGlow() public {
+        uint256 balanceBefore = gusd.balanceOf(
+            changelog.getAddress("MCD_PAUSE_PROXY")
+        );
+
+        vm.prank(address(1));
+
+        glow.quit();
+
+        uint256 balanceAfter = gusd.balanceOf(
+            changelog.getAddress("MCD_PAUSE_PROXY")
+        );
+
+        assertEq(balanceBefore, balanceAfter);
+    }
 }
