@@ -17,7 +17,7 @@ Calling `quit()` will sweep any GUSD balance to the Maker Pause Proxy, just in c
 
 ## Deployment
 
-- [Mainnet]()
-- [Goerli]()
+- Mainnet
+- [Goerli](https://goerli.etherscan.io/address/0x9d21f9cc6de1bf9d058b623ba1bd272260d5890c#code)
 
 Contract to send GUSD from the outside to MakerDAO's surplus buffer in a permissionless way.
