@@ -32,11 +32,11 @@ contract GlowTest is Test {
     Vat vat = Vat(changelog.getAddress("MCD_VAT"));
     address vow = changelog.getAddress("MCD_VOW");
 
-    uint256 goerliFork;
-    string GOERLI_RPC_URL = vm.envString("GOERLI_RPC_URL");
+    uint256 fork;
+    string ETH_RPC_URL = vm.envString("ETH_RPC_URL");
 
     function setUp() public {
-        goerliFork = vm.createFork(GOERLI_RPC_URL);
+        fork = vm.createFork(ETH_RPC_URL);
 
         glow = new Glow(changelog.getAddress("CHANGELOG"));
 
@@ -162,6 +162,8 @@ contract GlowTest is Test {
 
         vm.prank(address(1));
         gusd.transfer(address(glow), 11 * dec02);
+
+        vm.prank(address(changelog.getAddress("MCD_PAUSE_PROXY")));
         glow.quit();
 
         uint256 balanceAfter = gusd.balanceOf(
@@ -171,13 +173,21 @@ contract GlowTest is Test {
         assertEq(balanceBefore + 11 * dec02, balanceAfter);
     }
 
+    function testQuitFails() public {
+        vm.prank(address(1));
+        gusd.transfer(address(glow), 11 * dec02);
+
+        vm.expectRevert("Only callable by MCD_PAUSE_PROXY");
+        vm.prank(address(1));
+        glow.quit();
+    }
+
     function testAvoidGlow() public {
         uint256 balanceBefore = gusd.balanceOf(
             changelog.getAddress("MCD_PAUSE_PROXY")
         );
 
-        vm.prank(address(1));
-
+        vm.prank(address(changelog.getAddress("MCD_PAUSE_PROXY")));
         glow.quit();
 
         uint256 balanceAfter = gusd.balanceOf(

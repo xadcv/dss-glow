@@ -11,9 +11,8 @@ contract DeployScript is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        Glow glow = new Glow(0xdA0Ab1e0017DEbCd72Be8599041a2aa3bA7e740F);
+        Glow glow = new Glow(vm.envAddress("CHAINLOG"));
 
         vm.stopBroadcast();
     }
 }
-

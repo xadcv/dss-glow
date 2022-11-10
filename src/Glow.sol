@@ -54,11 +54,7 @@ contract Glow {
     DssPsm public immutable gusdPsm;
     DaiJoin public immutable daiJoin;
 
-    address gusdAddress;
-    address daiAddress;
-    address gusdPsmAddress;
-    address gusdJoinAddress;
-    address daiJoinAddress;
+    address gusdJoin;
     address vow;
 
     uint256 public running;
@@ -70,25 +66,20 @@ contract Glow {
 
     constructor(address chainlog_) {
         changelog = ChainLogLike(chainlog_);
+        gusd = Gusd(changelog.getAddress("GUSD"));
+        dai = Dai(changelog.getAddress("MCD_DAI"));
+        gusdPsm = DssPsm(changelog.getAddress("MCD_PSM_GUSD_A"));
+        daiJoin = DaiJoin(changelog.getAddress("MCD_JOIN_DAI"));
 
-        gusdAddress = changelog.getAddress("GUSD");
-        daiAddress = changelog.getAddress("MCD_DAI");
-        gusdPsmAddress = changelog.getAddress("MCD_PSM_GUSD_A");
-        gusdJoinAddress = changelog.getAddress("MCD_JOIN_PSM_GUSD_A");
-        daiJoinAddress = changelog.getAddress("MCD_JOIN_DAI");
         vow = changelog.getAddress("MCD_VOW");
+        gusdJoin = changelog.getAddress("MCD_JOIN_PSM_GUSD_A");
 
-        gusd = Gusd(gusdAddress);
-        dai = Dai(daiAddress);
-        gusdPsm = DssPsm(gusdPsmAddress);
-        daiJoin = DaiJoin(daiJoinAddress);
-
-        gusd.approve(gusdJoinAddress, 2**256 - 1);
-        dai.approve(daiJoinAddress, 2**256 - 1);
+        gusd.approve(gusdJoin, type(uint256).max);
+        dai.approve(address(daiJoin), type(uint256).max);
     }
 
     /// @dev Pulls GUSD from the wallet of the user and only sends that amount of Dai
-    function glow(uint256 amt_) public {
+    function glow(uint256 amt_) external {
         gusd.transferFrom(msg.sender, address(this), amt_);
         uint256 gbalance = gusd.balanceOf(address(this));
         if (gbalance != 0) {
@@ -102,7 +93,7 @@ contract Glow {
     }
 
     /// @dev Sweeps the balance of GUSD on the contract
-    function glow() public {
+    function glow() external {
         uint256 gbalance = gusd.balanceOf(address(this));
         if (gbalance != 0) {
             gusdPsm.sellGem(address(this), gbalance);
@@ -114,7 +105,12 @@ contract Glow {
         emit RunningTotal(running);
     }
 
-    function quit() public {
+    /// @dev Sends the balance of GUSD to the Pause Proxy
+    function quit() external {
+        require(
+            msg.sender == changelog.getAddress("MCD_PAUSE_PROXY"),
+            "Only callable by MCD_PAUSE_PROXY"
+        );
         uint256 gbalance = gusd.balanceOf(address(this));
         gusd.transfer(changelog.getAddress("MCD_PAUSE_PROXY"), gbalance);
         emit Quit(gbalance);
